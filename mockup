@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canada Immigration Wait Time Tracker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        header {
+            background: #35424a;
+            color: #ffffff;
+            padding-top: 30px;
+            min-height: 70px;
+            border-bottom: #e8491d 3px solid;
+        }
+        header a {
+            color: #ffffff;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 16px;
+        }
+        header ul {
+            padding: 0;
+            list-style: none;
+        }
+        header li {
+            display: inline;
+            padding: 0 20px 0 20px;
+        }
+        .form-section {
+            background: #ffffff;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px 0px #000;
+        }
+        .form-section h2 {
+            text-align: center;
+        }
+        .form-section form {
+            display: flex;
+            flex-direction: column;
+        }
+        .form-section label {
+            margin: 10px 0 5px 0;
+        }
+        .form-section input, .form-section select {
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .chart-section {
+            background: #ffffff;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px 0px #000;
+        }
+        .chart-section h2 {
+            text-align: center;
+        }
+        .chart-section .chart-container {
+            width: 100%;
+            height: 400px;
+        }
+        .results-section {
+            background: #ffffff;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px 0px #000;
+        }
+        .results-section h2 {
+            text-align: center;
+        }
+        .results-section .results-container {
+            font-size: 24px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <ul>
+                <li><a href="#form">Submit Info</a></li>
+                <li><a href="#chart">View Chart</a></li>
+                <li><a href="#results">View Results</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <div class="container">
+        <section class="form-section" id="form">
+            <h2>Submit Your Information</h2>
+            <form>
+                <label for="email">Email Address:</label>
+                <input type="email" id="email" name="email" required>
+                
+                <label for="citizenship">Citizenship:</label>
+                <input type="text" id="citizenship" name="citizenship" required>
+                
+                <label for="applicationType">Application Type:</label>
+                <select id="applicationType" name="applicationType" required>
+                    <option value="TRV_Visitor">TRV (Visitor)</option>
+                    <option value="TRV_SuperVisa">TRV (Super Visa)</option>
+                    <option value="StudyPermit">Study Permit</option>
+                    <option value="WorkPermit">Work Permit</option>
+                </select>
+                
+                <label for="submissionLocation">Submission Location:</label>
+                <select id="submissionLocation" name="submissionLocation" required>
+                    <option value="inCanada">In-Canada</option>
+                    <option value="international">International</option>
+                </select>
+                
+                <label for="countryOfResidence">Country of Residence:</label>
+                <input type="text" id="countryOfResidence" name="countryOfResidence" required>
+                
+                <label for="countryOfCitizenship">Country of Citizenship:</label>
+                <input type="text" id="countryOfCitizenship" name="countryOfCitizenship" required>
+                
+                <label for="gender">Gender:</label>
+                <select id="gender" name="gender" required>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="nonBinary">Non-binary</option>
+                    <option value="preferNotToSay">Prefer not to say</option>
+                </select>
+                
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="age" required>
+                
+                <label for="submissionDate">Submission Date:</label>
+                <input type="date" id="submissionDate" name="submissionDate" required>
+                
+                <label for="currentStatus">Current Status:</label>
+                <select id="currentStatus" name="currentStatus" required>
+                    <option value="inProcess">In-process</option>
+                    <option value="approved">Approved</option>
+                    <option value="refused">Refused</option>
+                </select>
+                
+                <label for="securityScreening">Are you in security screening?</label>
+                <select id="securityScreening" name="securityScreening" required>
+                    <option value="yes">YES</option>
+                    <option value="no">NO</option>
+                    <option value="idk">IDK (I don't know)</option>
+                </select>
+                
+                <label>Did you attempt any of the following?</label>
+                <label><input type="checkbox" name="contactMP"> Contact MP (联系议员)</label>
+                <label><input type="checkbox" name="callIRCC"> Call IRCC</label>
+                <label><input type="checkbox" name="sendWebform"> Send webform</label>
+                <label><input type="checkbox" name="fileATIPRequest"> File ATIP request (调档)</label>
+                
+                <input type="submit" value="Submit">
+            </form>
+        </section>
+
+        <section class="chart-section" id="chart">
+            <h2>View Aggregate Data</h2>
+            <div class="chart-container">
+                <!-- Placeholder for the chart -->
+                <canvas id="waitTimeChart"></canvas>
+            </div>
+        </section>
+
+        <section class="results-section" id="results">
+            <h2>Average Wait Time</h2>
+            <div class="results-container">
+                <!-- Placeholder for the number of days -->
+                <p id="averageWaitTime">Average Wait Time: XX days</p>
+            </div>
+        </section>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Placeholder data for the chart
+        const data = {
+            labels: ['TRV (Visitor)', 'TRV (Super Visa)', 'Study Permit', 'Work Permit'],
+            datasets: [{
+                label: 'Average Wait Time (days)',
+                data: [30, 45, 60, 75],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)'
+                ],
+                borderWidth: 1
+            }]
+        };
+
+        // Configuring the chart
+        const config = {
+            type: 'bar',
+            data: data,
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        };
+
+        // Rendering the chart
+        const myChart = new Chart(
+            document.getElementById('waitTimeChart'),
+            config
+        );
+
+        // Placeholder for updating average wait time
+        document.getElementById('averageWaitTime').innerText = 'Average Wait Time: 45 days';
+    </script>
+</body>
+</html>
