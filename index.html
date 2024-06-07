@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Canada Immigration Wait Time Tracker</title>
+    <title>INYS - Canada Immigration Wait Time Tracker</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
             background-color: #f4f4f4;
+            color: #333;
         }
         .container {
             width: 80%;
@@ -17,88 +18,75 @@
             overflow: hidden;
         }
         header {
-            background: #35424a;
-            color: #ffffff;
-            padding-top: 30px;
-            min-height: 70px;
-            border-bottom: #e8491d 3px solid;
+            background: #FFC107;
+            color: #000;
+            padding: 20px 0;
+            border-bottom: 3px solid #333;
+            text-align: center;
         }
         header a {
-            color: #ffffff;
+            color: #000;
             text-decoration: none;
             text-transform: uppercase;
             font-size: 16px;
+            margin: 0 15px;
         }
         header ul {
             padding: 0;
             list-style: none;
+            display: flex;
+            justify-content: center;
         }
         header li {
             display: inline;
-            padding: 0 20px 0 20px;
         }
-        .form-section {
+        .form-section, .chart-section, .results-section {
             background: #ffffff;
             padding: 20px;
             margin-top: 20px;
             border-radius: 5px;
             box-shadow: 0px 0px 10px 0px #000;
         }
-        .form-section h2 {
+        .form-section h2, .chart-section h2, .results-section h2 {
             text-align: center;
+            color: #333;
         }
         .form-section form {
             display: flex;
             flex-direction: column;
+            align-items: center;
         }
         .form-section label {
             margin: 10px 0 5px 0;
+            font-weight: bold;
         }
         .form-section input, .form-section select {
             padding: 10px;
             margin: 5px 0;
             border: 1px solid #ccc;
             border-radius: 5px;
+            width: 80%;
         }
-        .chart-section {
-            background: #ffffff;
-            padding: 20px;
-            margin-top: 20px;
-            border-radius: 5px;
-            box-shadow: 0px 0px 10px 0px #000;
+        .form-section input[type="submit"] {
+            background: #FFC107;
+            color: #000;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
         }
-        .chart-section h2 {
+        .chart-container, .results-container {
             text-align: center;
         }
-        .chart-section .chart-container {
-            width: 100%;
-            height: 400px;
-        }
-        .results-section {
-            background: #ffffff;
-            padding: 20px;
-            margin-top: 20px;
-            border-radius: 5px;
-            box-shadow: 0px 0px 10px 0px #000;
-        }
-        .results-section h2 {
-            text-align: center;
-        }
-        .results-section .results-container {
+        .results-container p {
             font-size: 24px;
-            text-align: center;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
     <header>
-        <div class="container">
-            <ul>
-                <li><a href="#form">Submit Info</a></li>
-                <li><a href="#chart">View Chart</a></li>
-                <li><a href="#results">View Results</a></li>
-            </ul>
-        </div>
+        <h1>End Systemic Profiling of Chinese-born Immigrants</h1>
+        <p>We're Not Your Spies</p>
     </header>
 
     <div class="container">
