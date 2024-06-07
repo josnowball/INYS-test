@@ -1,3 +1,8 @@
+To include a chart and a box displaying the wait time for each type of application in your HTML, you can use the following updated version of your code. This includes a placeholder for a chart (using Chart.js) and a styled box to show the wait time for each application type.
+
+Here's how you can integrate these features into your HTML:
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,11 +18,11 @@
             color: #333;
         }
         .container {
-            width: 90%;
-            margin: auto;
             display: flex;
             justify-content: space-between;
             flex-wrap: wrap;
+            width: 90%;
+            margin: auto;
         }
         header {
             background: #FFC107;
@@ -29,7 +34,7 @@
         header h1, header p {
             margin: 5px 0;
         }
-        .form-section, .chart-section {
+        .form-section, .chart-section, .info-box {
             background: #ffffff;
             padding: 20px;
             margin-top: 20px;
@@ -63,6 +68,15 @@
             width: 100%;
             height: 400px;
         }
+        .info-box {
+            text-align: center;
+            font-size: 24px;
+            background: #FFC107;
+            color: #000;
+            border-radius: 5px;
+            margin-top: 20px;
+            padding: 20px;
+        }
         .language-toggle {
             display: flex;
             justify-content: center;
@@ -79,6 +93,43 @@
             border-radius: 5px;
         }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        function setLanguage(lang) {
+            const elements = document.querySelectorAll('[data-en], [data-fr], [data-zh]');
+            elements.forEach(element => {
+                element.textContent = element.getAttribute('data-' + lang);
+            });
+        }
+
+        function renderChart() {
+            const ctx = document.getElementById('waitTimeChart').getContext('2d');
+            const chart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['TRV (Visitor)', 'TRV (Super Visa)', 'Study Permit', 'Work Permit', 'Express Entry', 'PNP', 'Spousal', 'Dependent Child', 'Parents & Grandparents'],
+                    datasets: [{
+                        label: 'Wait Time (months)',
+                        data: [6, 8, 4, 5, 12, 10, 9, 7, 14],
+                        backgroundColor: 'rgba(255, 193, 7, 0.6)',
+                        borderColor: 'rgba(255, 193, 7, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderChart();
+        });
+    </script>
 </head>
 <body>
     <header>
@@ -123,152 +174,11 @@
                 </select>
 
                 <label for="submissionLocation" data-en="Submission Location:" data-fr="Lieu de soumission:" data-zh="提交地点：">Submission Location:</label>
-                <select id="submissionLocation" name="submissionLocation" multiple required>
+                <select id="submissionLocation" name="submissionLocation" required>
                     <option value="inCanada" data-en="In-Canada" data-fr="Au Canada" data-zh="在加拿大">In-Canada</option>
                     <option value="international" data-en="International" data-fr="International" data-zh="国际">International</option>
                 </select>
 
                 <label for="countryOfResidence" data-en="Country of Residence:" data-fr="Pays de résidence:" data-zh="居住国家：">Country of Residence:</label>
                 <select id="countryOfResidence" name="countryOfResidence" required>
-                    <option value="China" data-en="China" data-fr="Chine" data-zh="中国">China</option>
-                    <option value="Canada" data-en="Canada" data-fr="Canada" data-zh="加拿大">Canada</option>
-                    <!-- Add more countries as needed -->
-                </select>
-
-                <label for="countryOfCitizenship" data-en="Country of Citizenship:" data-fr="Pays de citoyenneté:" data-zh="公民身份国家：">Country of Citizenship:</label>
-                <input type="text" id="countryOfCitizenship" name="countryOfCitizenship" required>
-
-                <label for="gender" data-en="Gender:" data-fr="Genre:" data-zh="性别：">Gender:</label>
-                <select id="gender" name="gender" required>
-                    <option value="male" data-en="Male" data-fr="Masculin" data-zh="男">Male</option>
-                    <option value="female" data-en="Female" data-fr="Féminin" data-zh="女">Female</option>
-                    <option value="nonBinary" data-en="Non-binary" data-fr="Non binaire" data-zh="非二元性别">Non-binary</option>
-                    <option value="preferNotToSay" data-en="Prefer not to say" data-fr="Préfère ne pas dire" data-zh="不愿透露">Prefer not to say</option>
-                </select>
-
-                <label for="age" data-en="Age:" data-fr="Âge:" data-zh="年龄：">Age:</label>
-                <input type="number" id="age" name="age" required>
-
-                <label for="submissionDate" data-en="Submission Date:" data-fr="Date de soumission:" data-zhHere is a streamlined and localized version of your HTML structure that meets your requirements:
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>INYS - Canada Immigration Wait Time Tracker</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
-        }
-        .container {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            width: 90%;
-            margin: auto;
-        }
-        header {
-            background: #FFC107;
-            color: #000;
-            padding: 20px 0;
-            text-align: center;
-            border-bottom: 3px solid #333;
-        }
-        header h1, header p {
-            margin: 5px 0;
-        }
-        .form-section, .chart-section {
-            background: #ffffff;
-            padding: 20px;
-            margin-top: 20px;
-            border-radius: 5px;
-            box-shadow: 0px 0px 10px 0px #000;
-            flex: 1 1 45%;
-        }
-        .form-section form {
-            display: flex;
-            flex-direction: column;
-        }
-        .form-section label {
-            margin: 10px 0 5px 0;
-            font-weight: bold;
-        }
-        .form-section input, .form-section select {
-            padding: 10px;
-            margin: 5px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        .form-section input[type="submit"] {
-            background: #FFC107;
-            color: #000;
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
-            margin-top: 10px;
-        }
-        .chart-container {
-            width: 100%;
-            height: 400px;
-        }
-        .language-toggle {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
-        }
-        .language-toggle button {
-            background: #FFC107;
-            color: #000;
-            border: none;
-            cursor: pointer;
-            padding: 10px 20px;
-            margin: 0 10px;
-            font-size: 16px;
-            border-radius: 5px;
-        }
-    </style>
-    <script>
-        function setLanguage(lang) {
-            const elements = document.querySelectorAll('[data-en], [data-fr], [data-zh]');
-            elements.forEach(element => {
-                element.textContent = element.getAttribute('data-' + lang);
-            });
-        }
-    </script>
-</head>
-<body>
-    <header>
-        <h1 data-en="End Systemic Profiling of Chinese-born Immigrants" data-fr="Mettre fin au profilage systémique des immigrants nés en Chine" data-zh="结束对中国出生移民的系统性定性">End Systemic Profiling of Chinese-born Immigrants</h1>
-        <p data-en="We're Not Your Spies" data-fr="Nous ne sommes pas vos espions" data-zh="我们不是你的间谍">We're Not Your Spies</p>
-    </header>
-
-    <div class="language-toggle">
-        <button onclick="setLanguage('en')">English</button>
-        <button onclick="setLanguage('fr')">Français</button>
-        <button onclick="setLanguage('zh')">中文</button>
-    </div>
-
-    <div class="container">
-        <section class="chart-section" id="chart">
-            <h2 data-en="View Aggregate Data" data-fr="Voir les données agrégées" data-zh="查看汇总数据">View Aggregate Data</h2>
-            <div class="chart-container">
-                <canvas id="waitTimeChart"></canvas>
-            </div>
-        </section>
-
-        <section class="form-section" id="form">
-            <h2 data-en="Submit Your Information" data-fr="Soumettez vos informations" data-zh="提交您的信息">Submit Your Information</h2>
-            <form>
-                <label for="email" data-en="Email Address:" data-fr="Adresse électronique:" data-zh="电子邮件地址：">Email Address:</label>
-                <input type="email" id="email" name="email" required>
-
-                <label for="citizenship" data-en="Citizenship:" data-fr="Citoyenneté:" data-zh="国籍：">Citizenship:</label>
-                <input type="text" id="citizenship" name="citizenship" required>
-
-                <label for="applicationType" data-en="Application Type:" data-fr="Type de demande:"
+                    <option value="China" data
