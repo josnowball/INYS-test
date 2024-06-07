@@ -13,48 +13,33 @@
             color: #333;
         }
         .container {
-            width: 80%;
+            width: 90%;
             margin: auto;
-            overflow: hidden;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
         }
         header {
             background: #FFC107;
             color: #000;
             padding: 20px 0;
-            border-bottom: 3px solid #333;
             text-align: center;
+            border-bottom: 3px solid #333;
         }
-        header a {
-            color: #000;
-            text-decoration: none;
-            text-transform: uppercase;
-            font-size: 16px;
-            margin: 0 15px;
+        header h1, header p {
+            margin: 5px 0;
         }
-        header ul {
-            padding: 0;
-            list-style: none;
-            display: flex;
-            justify-content: center;
-        }
-        header li {
-            display: inline;
-        }
-        .form-section, .chart-section, .results-section {
+        .form-section, .chart-section {
             background: #ffffff;
             padding: 20px;
             margin-top: 20px;
             border-radius: 5px;
             box-shadow: 0px 0px 10px 0px #000;
-        }
-        .form-section h2, .chart-section h2, .results-section h2 {
-            text-align: center;
-            color: #333;
+            flex: 1 1 45%;
         }
         .form-section form {
             display: flex;
             flex-direction: column;
-            align-items: center;
         }
         .form-section label {
             margin: 10px 0 5px 0;
@@ -65,7 +50,6 @@
             margin: 5px 0;
             border: 1px solid #ccc;
             border-radius: 5px;
-            width: 80%;
         }
         .form-section input[type="submit"] {
             background: #FFC107;
@@ -73,13 +57,11 @@
             border: none;
             cursor: pointer;
             font-size: 16px;
+            margin-top: 10px;
         }
-        .chart-container, .results-container {
-            text-align: center;
-        }
-        .results-container p {
-            font-size: 24px;
-            font-weight: bold;
+        .chart-container {
+            width: 100%;
+            height: 400px;
         }
         .language-toggle {
             display: flex;
@@ -100,8 +82,8 @@
 </head>
 <body>
     <header>
-        <h1>End Systemic Profiling of Chinese-born Immigrants</h1>
-        <p>We're Not Your Spies</p>
+        <h1 data-en="End Systemic Profiling of Chinese-born Immigrants" data-fr="Mettre fin au profilage systémique des immigrants nés en Chine" data-zh="结束对中国出生移民的系统性定性">End Systemic Profiling of Chinese-born Immigrants</h1>
+        <p data-en="We're Not Your Spies" data-fr="Nous ne sommes pas vos espions" data-zh="我们不是你的间谍">We're Not Your Spies</p>
     </header>
 
     <div class="language-toggle">
@@ -111,953 +93,182 @@
     </div>
 
     <div class="container">
-        <section class="form-section" id="form">
-            <h2>Submit Your Information</h2>
-            <form>
-                <label for="email">Email Address:</label>
-                <input type="email" id="email" name="email" required>
-                
-                <label for="citizenship">Citizenship:</label>
-                <input type="text" id="citizenship" name="citizenship" required>
-                
-                <label for="applicationType">Application Type:</label>
-                <select id="applicationType" name="applicationType" required>
-                    <option value="TRV_Visitor">TRV (Visitor)</option>
-                    <option value="TRV_SuperVisa">TRV (Super Visa)</option>
-                    <option value="StudyPermit">Study Permit</option>
-                    <option value="WorkPermit">Work Permit</option>
-                    <option value="ExpressEntry">Permanent residency (Express Entry)</option>
-                    <option value="PNP">Permanent residency (PNP)</option>
-                    <option value="Spousal">Permanent residency (Spousal)</option>
-                    <option value="DependentChild">Permanent residency (Dependent child)</option>
-                    <option value="ParentsGrandparents">Permanent residency (Parents & Grandparents)</option>
-                </select>
-                
-                <label for="submissionLocation">Submission Location:</label>
-                <select id="submissionLocation" name="submissionLocation" multiple required>
-                    <option value="inCanada">In-Canada</option>
-                    <option value="international">International</option>
-                </select>
-                
-                <label for="countryOfResidence">Country of Residence:</label>
-                <select id="countryOfResidence" name="countryOfResidence" required>
-                    <!-- Add 30 countries here -->
-                    <option value="China">China</option>
-                    <option value="Canada">Canada</option>
-                    <!-- Add more countries as needed -->
-                </select>
-                
-                <label for="countryOfCitizenship">Country of Citizenship:</label>
-                <input type="text" id="countryOfCitizenship" name="countryOfCitizenship" required>
-                
-                <label for="gender">Gender:</label>
-                <select id="gender" name="gender" required>
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
-                    <option value="nonBinary">Non-binary</option>
-                    <option value="preferNotToSay">Prefer not to say</option>
-                </select>
-                
-                <label for="age">Age:</label>
-                <input type="number" id="age" name="age" required>
-                
-                <label for="submissionDate">Submission Date:</label>
-                <input type="date" id="submissionDate" name="submissionDate" required>
-                
-                <label for="currentStatus">Current Status:</label>
-                <select id="currentStatus" name="currentStatus" required>
-                    <option value="inProcess">In-process</option>
-                    <option value="approved">Approved</option>
-                    <option value="refused">Refused</option>
-                </select>
-                
-                <label for="securityScreening">Are you in security screening?</label>
-                <select id="securityScreening" name="securityScreening" required>
-                    <option value="yes">YES</option>
-                    <option value="no">NO</option>
-                    <option value="idk">IDK (I don't know)</option>
-                </select>
-                
-                <label>Did you attempt any of the following?</label>
-                <label><input type="checkbox" name="contactMP"> Contact MP (联系议员)</label>
-                <label><input type="checkbox" name="callIRCC"> Call IRCC</label>
-                <label><input type="checkbox" name="sendWebform"> Send webform</label>
-                <label><input type="checkbox" name="fileATIPRequest"> File ATIP request (调档)</label>
-                
-                <input type="submit" value="Submit">
-            </form>
-        </section>
-
         <section class="chart-section" id="chart">
-            <h2>View Aggregate Data</h2>
+            <h2 data-en="View Aggregate Data" data-fr="Voir les données agrégées" data-zh="查看汇总数据">View Aggregate Data</h2>
             <div class="chart-container">
-                <!-- Placeholder for the chart -->
                 <canvas id="waitTimeChart"></canvas>
             </div>
         </section>
 
-        <section class="results-section" id="results">
-            <h2>Average Wait Time</h2>
-            <div class="results-container">
-                <!-- Placeholder for the number of days -->
-                <p id="averageWaitTime">Average Wait Time: XX days</p>
+        <section class="form-section" id="form">
+            <h2 data-en="Submit Your Information" data-fr="Soumettez vos informations" data-zh="提交您的信息">Submit Your Information</h2>
+            <form>
+                <label for="email" data-en="Email Address:" data-fr="Adresse électronique:" data-zh="电子邮件地址：">Email Address:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="citizenship" data-en="Citizenship:" data-fr="Citoyenneté:" data-zh="国籍：">Citizenship:</label>
+                <input type="text" id="citizenship" name="citizenship" required>
+
+                <label for="applicationType" data-en="Application Type:" data-fr="Type de demande:" data-zh="申请类型：">Application Type:</label>
+                <select id="applicationType" name="applicationType" required>
+                    <option value="TRV_Visitor" data-en="TRV (Visitor)" data-fr="VRT (Visiteur)" data-zh="旅游签证（访问）">TRV (Visitor)</option>
+                    <option value="TRV_SuperVisa" data-en="TRV (Super Visa)" data-fr="VRT (Super Visa)" data-zh="旅游签证（超级签证）">TRV (Super Visa)</option>
+                    <option value="StudyPermit" data-en="Study Permit" data-fr="Permis d'études" data-zh="学习许可">Study Permit</option>
+                    <option value="WorkPermit" data-en="Work Permit" data-fr="Permis de travail" data-zh="工作许可">Work Permit</option>
+                    <option value="ExpressEntry" data-en="Permanent residency (Express Entry)" data-fr="Résidence permanente (Entrée express)" data-zh="永久居留（快速通道）">Permanent residency (Express Entry)</option>
+                    <option value="PNP" data-en="Permanent residency (PNP)" data-fr="Résidence permanente (PPNP)" data-zh="永久居留（省提名计划）">Permanent residency (PNP)</option>
+                    <option value="Spousal" data-en="Permanent residency (Spousal)" data-fr="Résidence permanente (Conjoint)" data-zh="永久居留（配偶）">Permanent residency (Spousal)</option>
+                    <option value="DependentChild" data-en="Permanent residency (Dependent child)" data-fr="Résidence permanente (Enfant à charge)" data-zh="永久居留（受抚养子女）">Permanent residency (Dependent child)</option>
+                    <option value="ParentsGrandparents" data-en="Permanent residency (Parents & Grandparents)" data-fr="Résidence permanente (Parents et grands-parents)" data-zh="永久居留（父母及祖父母）">Permanent residency (Parents & Grandparents)</option>
+                </select>
+
+                <label for="submissionLocation" data-en="Submission Location:" data-fr="Lieu de soumission:" data-zh="提交地点：">Submission Location:</label>
+                <select id="submissionLocation" name="submissionLocation" multiple required>
+                    <option value="inCanada" data-en="In-Canada" data-fr="Au Canada" data-zh="在加拿大">In-Canada</option>
+                    <option value="international" data-en="International" data-fr="International" data-zh="国际">International</option>
+                </select>
+
+                <label for="countryOfResidence" data-en="Country of Residence:" data-fr="Pays de résidence:" data-zh="居住国家：">Country of Residence:</label>
+                <select id="countryOfResidence" name="countryOfResidence" required>
+                    <option value="China" data-en="China" data-fr="Chine" data-zh="中国">China</option>
+                    <option value="Canada" data-en="Canada" data-fr="Canada" data-zh="加拿大">Canada</option>
+                    <!-- Add more countries as needed -->
+                </select>
+
+                <label for="countryOfCitizenship" data-en="Country of Citizenship:" data-fr="Pays de citoyenneté:" data-zh="公民身份国家：">Country of Citizenship:</label>
+                <input type="text" id="countryOfCitizenship" name="countryOfCitizenship" required>
+
+                <label for="gender" data-en="Gender:" data-fr="Genre:" data-zh="性别：">Gender:</label>
+                <select id="gender" name="gender" required>
+                    <option value="male" data-en="Male" data-fr="Masculin" data-zh="男">Male</option>
+                    <option value="female" data-en="Female" data-fr="Féminin" data-zh="女">Female</option>
+                    <option value="nonBinary" data-en="Non-binary" data-fr="Non binaire" data-zh="非二元性别">Non-binary</option>
+                    <option value="preferNotToSay" data-en="Prefer not to say" data-fr="Préfère ne pas dire" data-zh="不愿透露">Prefer not to say</option>
+                </select>
+
+                <label for="age" data-en="Age:" data-fr="Âge:" data-zh="年龄：">Age:</label>
+                <input type="number" id="age" name="age" required>
+
+                <label for="submissionDate" data-en="Submission Date:" data-fr="Date de soumission:" data-zhHere is a streamlined and localized version of your HTML structure that meets your requirements:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INYS - Canada Immigration Wait Time Tracker</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            width: 90%;
+            margin: auto;
+        }
+        header {
+            background: #FFC107;
+            color: #000;
+            padding: 20px 0;
+            text-align: center;
+            border-bottom: 3px solid #333;
+        }
+        header h1, header p {
+            margin: 5px 0;
+        }
+        .form-section, .chart-section {
+            background: #ffffff;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px 0px #000;
+            flex: 1 1 45%;
+        }
+        .form-section form {
+            display: flex;
+            flex-direction: column;
+        }
+        .form-section label {
+            margin: 10px 0 5px 0;
+            font-weight: bold;
+        }
+        .form-section input, .form-section select {
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .form-section input[type="submit"] {
+            background: #FFC107;
+            color: #000;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        .chart-container {
+            width: 100%;
+            height: 400px;
+        }
+        .language-toggle {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .language-toggle button {
+            background: #FFC107;
+            color: #000;
+            border: none;
+            cursor: pointer;
+            padding: 10px 20px;
+            margin: 0 10px;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+    </style>
+    <script>
+        function setLanguage(lang) {
+            const elements = document.querySelectorAll('[data-en], [data-fr], [data-zh]');
+            elements.forEach(element => {
+                element.textContent = element.getAttribute('data-' + lang);
+            });
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1 data-en="End Systemic Profiling of Chinese-born Immigrants" data-fr="Mettre fin au profilage systémique des immigrants nés en Chine" data-zh="结束对中国出生移民的系统性定性">End Systemic Profiling of Chinese-born Immigrants</h1>
+        <p data-en="We're Not Your Spies" data-fr="Nous ne sommes pas vos espions" data-zh="我们不是你的间谍">We're Not Your Spies</p>
+    </header>
+
+    <div class="language-toggle">
+        <button onclick="setLanguage('en')">English</button>
+        <button onclick="setLanguage('fr')">Français</button>
+        <button onclick="setLanguage('zh')">中文</button>
+    </div>
+
+    <div class="container">
+        <section class="chart-section" id="chart">
+            <h2 data-en="View Aggregate Data" data-fr="Voir les données agrégées" data-zh="查看汇总数据">View Aggregate Data</h2>
+            <div class="chart-container">
+                <canvas id="waitTimeChart"></canvas>
             </div>
         </section>
-    </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
-        // Placeholder data for the chart
-        const data = {
-            labels: ['TRV (Visitor)', 'TRV (Super Visa)', 'Study Permit', 'Work Permit'],
-            datasets: [{
-                label: 'Average Wait Time (days)',
-                data: [30, 45, 60, 75],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)'
-                ],
-                borderWidth: 1
-            }]
-        };
-
-        // Configuring the chart
-        const config = {
-            type: 'bar',
-            data: data,
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        };
-
-        // Rendering the chart
-        constHere is the updated HTML with the requested changes, including the trilingual support, additional application types, and a country of residence dropdown menu:
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>INYS - Canada Immigration Wait Time Tracker</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
-        }
-        .container {
-            width: 80%;
-            margin: auto;
-            overflow: hidden;
-        }
-        header {
-            background: #FFC107;
-            color: #000;
-            padding: 20px 0;
-            border-bottom: 3px solid #333;
-            text-align: center;
-        }
-        header a {
-            color: #000;
-            text-decoration: none;
-            text-transform: uppercase;
-            font-size: 16px;
-            margin: 0 15px;
-        }
-        header ul {
-            padding: 0;
-            list-style: none;
-            display: flex;
-            justify-content: center;
-        }
-        header li {
-            display: inline;
-        }
-        .form-section, .chart-section, .results-section {
-            background: #ffffff;
-            padding: 20px;
-            margin-top: 20px;
-            border-radius: 5px;
-            box-shadow: 0px 0px 10px 0px #000;
-        }
-        .form-section h2, .chart-section h2, .results-section h2 {
-            text-align: center;
-            color: #333;
-        }
-        .form-section form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .form-section label {
-            margin: 10px 0 5px 0;
-            font-weight: bold;
-        }
-        .form-section input, .form-section select {
-            padding: 10px;
-            margin: 5px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            width: 80%;
-        }
-        .form-section input[type="submit"] {
-            background: #FFC107;
-            color: #000;
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        .chart-container, .results-container {
-            text-align: center;
-        }
-        .results-container p {
-            font-size: 24px;
-            font-weight: bold;
-        }
-        .language-toggle {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
-        }
-        .language-toggle button {
-            background: #FFC107;
-            color: #000;
-            border: none;
-            cursor: pointer;
-            padding: 10px 20px;
-            margin: 0 10px;
-            font-size: 16px;
-            border-radius: 5px;
-        }
-    </style>
-    <script>
-        function setLanguage(lang) {
-            const elements = document.querySelectorAll('[data-en], [data-fr], [data-zh]');
-            elements.forEach(element => {
-                element.textContent = element.getAttribute('data-' + lang);
-            });
-        }
-    </script>
-</head>
-<body>
-    <header>
-        <h1 data-en="End Systemic Profiling of Chinese-born Immigrants" data-fr="Mettre fin au profilage systémique des immigrants nés en Chine" data-zh="结束对中国出生移民的系统性定性">End Systemic Profiling of Chinese-born Immigrants</h1>
-        <p data-en="We're Not Your Spies" data-fr="Nous ne sommes pas vos espions" data-zh="我们不是你的间谍">We're Not Your Spies</p>
-    </header>
-
-    <div class="language-toggle">
-        <button onclick="setLanguage('en')">English</button>
-        <button onclick="setLanguage('fr')">Français</button>
-        <button onclick="setLanguage('zh')">中文</button>
-    </div>
-
-    <div class="container">
         <section class="form-section" id="form">
             <h2 data-en="Submit Your Information" data-fr="Soumettez vos informations" data-zh="提交您的信息">Submit Your Information</h2>
             <form>
                 <label for="email" data-en="Email Address:" data-fr="Adresse électronique:" data-zh="电子邮件地址：">Email Address:</label>
                 <input type="email" id="email" name="email" required>
-                
+
                 <label for="citizenship" data-en="Citizenship:" data-fr="Citoyenneté:" data-zh="国籍：">Citizenship:</label>
                 <input type="text" id="citizenship" name="citizenship" required>
-                
-                <label for="applicationType" data-en="Application Type:" data-fr="Type de demande:" data-zh="申请类型：">Application Type:</label>
-                <select id="applicationType" name="applicationType" required>
-                    <option value="TRV_Visitor" data-en="TRV (Visitor)" data-fr="VRT (Visiteur)" data-zh="旅游签证（访问）">TRV (Visitor)</option>
-                    <option value="TRV_SuperVisa" data-en="TRV (Super Visa)" data-fr="VRT (Super Visa)" data-zh="旅游签证（超级签证）">TRV (Super Visa)</option>
-                    <option value="StudyPermit" data-en="Study Permit" data-fr="Permis d'études" data-zh="学习许可">Study Permit</option>
-                    <option value="WorkPermit" data-en="Work Permit" data-fr="Permis de travail" data-zh="工作许可">Work Permit</option>
-                    <option value="ExpressEntry" data-en="Permanent residency (Express Entry)" data-fr="Résidence permanente (Entrée express)" data-zh="永久居留（快速通道）">Permanent residency (Express Entry)</option>
-                    <option value="PNP" data-en="Permanent residency (PNP)" data-fr="Résidence permanente (PPNP)" data-zh="永久居留（省提名计划）">Permanent residency (PNP)</option>
-                    <option value="Spousal" data-en="Permanent residency (Spousal)" data-fr="Résidence permanente (Conjoint)" data-zh="永久居留（配偶）">Permanent residency (Spousal)</option>
-                    <option value="DependentChild" data-en="Permanent residency (Dependent child)" data-fr="Résidence permanente (Enfant à charge)" data-zh="永久居留（受抚养子女）">Permanent residency (Dependent child)</option>
-                    <option value="ParentsGrandparents" data-en="Permanent residency (Parents & Grandparents)" data-fr="Résidence permanente (Parents et grands-parents)" data-zh="永久居留（父母及祖父母）">Permanent residency (Parents & Grandparents)</option>
-                </select>
-                
-                <label for="submissionLocation" data-en="Submission Location:" data-fr="Lieu de soumission:" data-zh="提交地点：">Submission Location:</label>
-                <select id="submissionLocation" name="submissionLocation" multiple required>
-                    <option value="inCanada" data-en="In-Canada" data-fr="Au Canada" data-zh="在加拿大">In-Canada</option>
-                    <option value="international" data-en="International" data-fr="International" data-zh="国际">International</option>
-                </select>
-                
-                <label for="countryOfResidence" data-en="Country of Residence:" data-fr="Pays de résidence:" data-zh="居住国家：">Country of Residence:</label>
-                <select id="countryOfResidence" name="countryOfResidence" required>
-                    <!-- Add 30 countries here -->
-                    <option value="China" data-en="China" data-fr="Chine" data-zh="中国">China</option>
-                    <option value="Canada" data-en="Canada" data-fr="Canada" data-zh="加拿大">Canada</option>
-                    <!-- Add more countries as needed -->
-                </select>
-                
-                <label for="countryOfCitizenship" data-en="Country of Citizenship:" data-fr="Pays de citoyenneté:" data-zh="公民身份国家：">Country of Citizenship:</label>
-                <input type="text" id="countryOfCitizenship" name="countryOfCitizenship" required>
-                
-                <label for="gender" data-en="Gender:" data-fr="Genre:" data-zh="性别：">Gender:</label>
-                <select id="gender" name="gender" required>
-                    <option value="male" data-en="Male" data-fr="Masculin" data-zh="男">Male</option>
-                    <option value="female" data-en="Female" data-fr="Féminin" data-zh="女">Female</option>
-                    <option value="nonBinary" data-en="Non-binary" data-fr="Non binaire" data-zh="非二元性别">Non-binary</option>
-                    <option value="preferNotToSay" data-en="Prefer not to say" data-fr="Préfère ne pas dire" data-zh="不愿透露">Prefer not to say</option>
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>INYS - Canada Immigration Wait Time Tracker</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
-        }
-        .container {
-            width: 80%;
-            margin: auto;
-            overflow: hidden;
-        }
-        header {
-            background: #FFC107;
-            color: #000;
-            padding: 20px 0;
-            border-bottom: 3px solid #333;
-            text-align: center;
-        }
-        header a {
-            color: #000;
-            text-decoration: none;
-            text-transform: uppercase;
-            font-size: 16px;
-            margin: 0 15px;
-        }
-        header ul {
-            padding: 0;
-            list-style: none;
-            display: flex;
-            justify-content: center;
-        }
-        header li {
-            display: inline;
-        }
-        .form-section, .chart-section, .results-section {
-            background: #ffffff;
-            padding: 20px;
-            margin-top: 20px;
-            border-radius: 5px;
-            box-shadow: 0px 0px 10px 0px #000;
-        }
-        .form-section h2, .chart-section h2, .results-section h2 {
-            text-align: center;
-            color: #333;
-        }
-        .form-section form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .form-section label {
-            margin: 10px 0 5px 0;
-            font-weight: bold;
-        }
-        .form-section input, .form-section select {
-            padding: 10px;
-            margin: 5px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            width: 80%;
-        }
-        .form-section input[type="submit"] {
-            background: #FFC107;
-            color: #000;
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        .chart-container, .results-container {
-            text-align: center;
-        }
-        .results-container p {
-            font-size: 24px;
-            font-weight: bold;
-        }
-        .language-toggle {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
-        }
-        .language-toggle button {
-            background: #FFC107;
-            color: #000;
-            border: none;
-            cursor: pointer;
-            padding: 10px 20px;
-            margin: 0 10px;
-            font-size: 16px;
-            border-radius: 5px;
-        }
-    </style>
-    <script>
-        function setLanguage(lang) {
-            const elements = document.querySelectorAll('[data-en], [data-fr], [data-zh]');
-            elements.forEach(element => {
-                element.textContent = element.getAttribute('data-' + lang);
-            });
-        }
-    </script>
-</head>
-<body>
-    <header>
-        <h1 data-en="End Systemic Profiling of Chinese-born Immigrants" data-fr="Mettre fin au profilage systémique des immigrants nés en Chine" data-zh="结束对中国出生移民的系统性定性">End Systemic Profiling of Chinese-born Immigrants</h1>
-        <p data-en="We're Not Your Spies" data-fr="Nous ne sommes pas vos espions" data-zh="我们不是你的间谍">We're Not Your Spies</p>
-    </header>
 
-    <div class="language-toggle">
-        <button onclick="setLanguage('en')">English</button>
-        <button onclick="setLanguage('fr')">Français</button>
-        <button onclick="setLanguage('zh')">中文</button>
-    </div>
-
-    <div class="container">
-        <section class="form-section" id="form">
-            <h2 data-en="Submit Your Information" data-fr="Soumettez vos informations" data-zh="提交您的信息">Submit Your Information</h2>
-            <form>
-                <label for="email" data-en="Email Address:" data-fr="Adresse électronique:" data-zh="电子邮件地址：">Email Address:</label>
-                <input type="email" id="email" name="email" required>
-                
-                <label for="citizenship" data-en="Citizenship:" data-fr="Citoyenneté:" data-zh="国籍：">Citizenship:</label>
-                <input type="text" id="citizenship" name="citizenship" required>
-                
-                <label for="applicationType" data-en="Application Type:" data-fr="Type de demande:" data-zh="申请类型：">Application Type:</label>
-                <select id="applicationType" name="applicationType" required>
-                    <option value="TRV_Visitor" data-en="TRV (Visitor)" data-fr="VRT (Visiteur)" data-zh="旅游签证（访问）">TRV (Visitor)</option>
-                    <option value="TRV_SuperVisa" data-en="TRV (Super Visa)" data-fr="VRT (Super Visa)" data-zh="旅游签证（超级签证）">TRV (Super Visa)</option>
-                    <option value="StudyPermit" data-en="Study Permit" data-fr="Permis d'études" data-zh="学习许可">Study Permit</option>
-                    <option value="WorkPermit" data-en="Work Permit" data-fr="Permis de travail" data-zh="工作许可">Work Permit</option>
-                    <option value="ExpressEntry" data-en="Permanent residency (Express Entry)" data-fr="Résidence permanente (Entrée express)" data-zh="永久居留（快速通道）">Permanent residency (Express Entry)</option>
-                    <option value="PNP" data-en="Permanent residency (PNP)" data-fr="Résidence permanente (PPNP)" data-zh="永久居留（省提名计划）">Permanent residency (PNP)</option>
-                    <option value="Spousal" data-en="Permanent residency (Spousal)" data-fr="Résidence permanente (Conjoint)" data-zh="永久居留（配偶）">Permanent residency (Spousal)</option>
-                    <option value="DependentChild" data-en="Permanent residency (Dependent child)" data-fr="Résidence permanente (Enfant à charge)" data-zh="永久居留（受抚养子女）">Permanent residency (Dependent child)</option>
-                    <option value="ParentsGrandparents" data-en="Permanent residency (Parents & Grandparents)" data-fr="Résidence permanente (Parents et grands-parents)" data-zh="永久居留（父母及祖父母）">Permanent residency (Parents & Grandparents)</option>
-                </select>
-                
-                <label for="submissionLocation" data-en="Submission Location:" data-fr="Lieu de soumission:" data-zh="提交地点：">Submission Location:</label>
-                <select id="submissionLocation" name="submissionLocation" multiple required>
-                    <option value="inCanada" data-en="In-Canada" data-fr="Au Canada" data-zh="在加拿大">In-Canada</option>
-                    <option value="international" data-en="International" data-fr="International" data-zh="国际">International</option>
-                </select>
-                
-                <label for="countryOfResidence" data-en="Country of Residence:" data-fr="Pays de résidence:" data-zh="居住国家：">Country of Residence:</label>
-                <select id="countryOfResidence" name="countryOfResidence" required>
-                    <!-- Add 30 countries here -->
-                    <option value="China" data-en="China" data-fr="Chine" data-zh="中国">China</option>
-                    <option value="Canada" data-en="Canada" data-fr="Canada" data-zh="加拿大">Canada</option>
-                    <!-- Add more countries as needed -->
-                </select>
-                
-                <label for="countryOfCitizenship" data-en="Country of Citizenship:" data-fr="Pays de citoyenneté:" data-zh="公民身份国家：">Country of Citizenship:</label>
-                <input type="text" id="countryOfCitizenship" name="countryOfCitizenship" required>
-                
-                <label for="gender" data-en="Gender:" data-fr="Genre:" data-zh="性别：">Gender:</label>
-                <select id="gender" name="gender" required>
-                    <option value="male" data-en="Male" data-fr="Masculin" data-zh="男">Male</option>
-                    <option value="female" data-en="Female" data-fr="Féminin" data-zh="女">Female</option>
-                    <option value="nonBinary" data-en="Non-binary" data-fr="Non binaire" data-zh="非二元性别">Non-binary</option>
-                    <option value="preferNotToSay" data-en="Prefer not to say" data-fr="Préfère ne pas dire" data-zh="不愿透露">Prefer not to say</option>
-                </select>
-                
-                <label for="age" data-en="Age:" data-fr="Âge:" data-zh="年龄```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>INYS - Canada Immigration Wait Time Tracker</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
-        }
-        .container {
-            width: 80%;
-            margin: auto;
-            overflow: hidden;
-        }
-        header {
-            background: #FFC107;
-            color: #000;
-            padding: 20px 0;
-            border-bottom: 3px solid #333;
-            text-align: center;
-        }
-        header a {
-            color: #000;
-            text-decoration: none;
-            text-transform: uppercase;
-            font-size: 16px;
-            margin: 0 15px;
-        }
-        header ul {
-            padding: 0;
-            list-style: none;
-            display: flex;
-            justify-content: center;
-        }
-        header li {
-            display: inline;
-        }
-        .form-section, .chart-section, .results-section {
-            background: #ffffff;
-            padding: 20px;
-            margin-top: 20px;
-            border-radius: 5px;
-            box-shadow: 0px 0px 10px 0px #000;
-        }
-        .form-section h2, .chart-section h2, .results-section h2 {
-            text-align: center;
-            color: #333;
-        }
-        .form-section form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .form-section label {
-            margin: 10px 0 5px 0;
-            font-weight: bold;
-        }
-        .form-section input, .form-section select {
-            padding: 10px;
-            margin: 5px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            width: 80%;
-        }
-        .form-section input[type="submit"] {
-            background: #FFC107;
-            color: #000;
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        .chart-container, .results-container {
-            text-align: center;
-        }
-        .results-container p {
-            font-size: 24px;
-            font-weight: bold;
-        }
-        .language-toggle {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
-        }
-        .language-toggle button {
-            background: #FFC107;
-            color: #000;
-            border: none;
-            cursor: pointer;
-            padding: 10px 20px;
-            margin: 0 10px;
-            font-size: 16px;
-            border-radius: 5px;
-        }
-    </style>
-    <script>
-        function setLanguage(lang) {
-            const elements = document.querySelectorAll('[data-en], [data-fr], [data-zh]');
-            elements.forEach(element => {
-                element.textContent = element.getAttribute('data-' + lang);
-            });
-        }
-    </script>
-</head>
-<body>
-    <header>
-        <h1 data-en="End Systemic Profiling of Chinese-born Immigrants" data-fr="Mettre fin au profilage systémique des immigrants nés en Chine" data-zh="结束对中国出生移民的系统性定性">End Systemic Profiling of Chinese-born Immigrants</h1>
-        <p data-en="We're Not Your Spies" data-fr="Nous ne sommes pas vos espions" data-zh="我们不是你的间谍">We're Not Your Spies</p>
-    </header>
-
-    <div class="language-toggle">
-        <button onclick="setLanguage('en')">English</button>
-        <button onclick="setLanguage('fr')">Français</button>
-        <button onclick="setLanguage('zh')">中文</button>
-    </div>
-
-    <div class="container">
-        <section class="form-section" id="form">
-            <h2 data-en="Submit Your Information" data-fr="Soumettez vos informations" data-zh="提交您的信息">Submit Your Information</h2>
-            <form>
-                <label for="email" data-en="Email Address:" data-fr="Adresse électronique:" data-zh="电子邮件地址：">Email Address:</label>
-                <input type="email" id="email" name="email" required>
-                
-                <label for="citizenship" data-en="Citizenship:" data-fr="Citoyenneté:" data-zh="国籍：">Citizenship:</label>
-                <input type="text" id="citizenship" name="citizenship" required>
-                
-                <label for="applicationType" data-en="Application Type:" data-fr="Type de demande:" data-zh="申请类型：">Application Type:</label>
-                <select id="applicationType" name="applicationType" required>
-                    <option value="TRV_Visitor" data-en="TRV (Visitor)" data-fr="VRT (Visiteur)" data-zh="旅游签证（访问）">TRV (Visitor)</option>
-                    <option value="TRV_SuperVisa" data-en="TRV (Super Visa)" data-fr="VRT (Super Visa)" data-zh="旅游签证（超级签证）">TRV (Super Visa)</option>
-                    <option value="StudyPermit" data-en="Study Permit" data-fr="Permis d'études" data-zh="学习许可">Study Permit</option>
-                    <option value="WorkPermit" data-en="Work Permit" data-fr="Permis de travail" data-zh="工作许可">Work Permit</option>
-                    <option value="ExpressEntry" data-en="Permanent residency (Express Entry)" data-fr="Résidence permanente (Entrée express)" data-zh="永久居留（快速通道）">Permanent residency (Express Entry)</option>
-                    <option value="PNP" data-en="Permanent residency (PNP)" data-fr="Résidence permanente (PPNP)" data-zh="永久居留（省提名计划）">Permanent residency (PNP)</option>
-                    <option value="Spousal" data-en="Permanent residency (Spousal)" data-fr="Résidence permanente (Conjoint)" data-zh="永久居留（配偶）">Permanent residency (Spousal)</option>
-                    <option value="DependentChild" data-en="Permanent residency (Dependent child)" data-fr="Résidence permanente (Enfant à charge)" data-zh="永久居留（受抚养子女）">Permanent residency (Dependent child)</option>
-                    <option value="ParentsGrandparents" data-en="Permanent residency (Parents & Grandparents)" data-fr="Résidence permanente (Parents et grands-parents)" data-zh="永久居留（父母及祖父母）">Permanent residency (Parents & Grandparents)</option>
-                </select>
-                
-                <label for="submissionLocation" data-en="Submission Location:" data-fr="Lieu de soumission:" data-zh="提交地点：">Submission Location:</label>
-                <select id="submissionLocation" name="submissionLocation" multiple required>
-                    <option value="inCanada" data-en="In-Canada" data-fr="Au Canada" data-zh="在加拿大">In-Canada</option>
-                    <option value="international" data-en="International" data-fr="International" data-zh="国际">International</option>
-                </select>
-                
-                <label for="countryOfResidence" data-en="Country of Residence:" data-fr="Pays de résidence:" data-zh="居住国家：">Country of Residence:</label>
-                <select id="countryOfResidence" name="countryOfResidence" required>
-                    <option value="China" data-en="China" data-fr="Chine" data-zh="中国">China</option>
-                    <option value="Canada" data-en="Canada" data-fr="Canada" data-zh="加拿大">Canada</option>
-                    <!-- Add more countries as needed -->
-                </select>
-                
-                <label for="countryOfCitizenship" data-en="Country of Citizenship:" data-fr="Pays de citoyenneté:" data-zh="公民身份国家：">Country of Citizenship:</label>
-                <input type="text" id="countryOfCitizenship" name="countryOfCitizenship" required>
-                
-                <label for="gender" data-en="Gender:" data-fr="Genre:" data-zh="性别：">Gender:</label>
-                <select id="gender" name="gender" required>
-                    <option value="male" data-en="Male" data-fr="Masculin" data-zh="男">Male</option>
-                    <option value="female" data-en="Female" data-fr="Féminin" data-zh="女">Female</option>
-                    <option value="nonBinary" data-en="Non-binary" data-fr="Non binaire" data-zh="非二元性别">Non-binary</option>
-                    <option value="preferNotToSay" data-en="Prefer not to say" data-fr="Préfère ne pas dire" data-zh="不愿透露">Prefer not to say</option>
-                </select>
-                
-                <label for="age" data-en="Age:" data-fr="Âge:" data-zh="年龄：">Age:</label>
-                <```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>INYS - Canada Immigration Wait Time Tracker</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
-        }
-        .container {
-            width: 80%;
-            margin: auto;
-            overflow: hidden;
-        }
-        header {
-            background: #FFC107;
-            color: #000;
-            padding: 20px 0;
-            border-bottom: 3px solid #333;
-            text-align: center;
-        }
-        header a {
-            color: #000;
-            text-decoration: none;
-            text-transform: uppercase;
-            font-size: 16px;
-            margin: 0 15px;
-        }
-        header ul {
-            padding: 0;
-            list-style: none;
-            display: flex;
-            justify-content: center;
-        }
-        header li {
-            display: inline;
-        }
-        .form-section, .chart-section, .results-section {
-            background: #ffffff;
-            padding: 20px;
-            margin-top: 20px;
-            border-radius: 5px;
-            box-shadow: 0px 0px 10px 0px #000;
-        }
-        .form-section h2, .chart-section h2, .results-section h2 {
-            text-align: center;
-            color: #333;
-        }
-        .form-section form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .form-section label {
-            margin: 10px 0 5px 0;
-            font-weight: bold;
-        }
-        .form-section input, .form-section select {
-            padding: 10px;
-            margin: 5px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            width: 80%;
-        }
-        .form-section input[type="submit"] {
-            background: #FFC107;
-            color: #000;
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        .chart-container, .results-container {
-            text-align: center;
-        }
-        .results-container p {
-            font-size: 24px;
-            font-weight: bold;
-        }
-        .language-toggle {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
-        }
-        .language-toggle button {
-            background: #FFC107;
-            color: #000;
-            border: none;
-            cursor: pointer;
-            padding: 10px 20px;
-            margin: 0 10px;
-            font-size: 16px;
-            border-radius: 5px;
-        }
-    </style>
-    <script>
-        function setLanguage(lang) {
-            const elements = document.querySelectorAll('[data-en], [data-fr], [data-zh]');
-            elements.forEach(element => {
-                element.textContent = element.getAttribute('data-' + lang);
-            });
-        }
-    </script>
-</head>
-<body>
-    <header>
-        <h1 data-en="End Systemic Profiling of Chinese-born Immigrants" data-fr="Mettre fin au profilage systémique des immigrants nés en Chine" data-zh="结束对中国出生移民的系统性定性">End Systemic Profiling of Chinese-born Immigrants</h1>
-        <p data-en="We're Not Your Spies" data-fr="Nous ne sommes pas vos espions" data-zh="我们不是你的间谍">We're Not Your Spies</p>
-    </header>
-
-    <div class="language-toggle">
-        <button onclick="setLanguage('en')">English</button>
-        <button onclick="setLanguage('fr')">Français</button>
-        <button onclick="setLanguage('zh')">中文</button>
-    </div>
-
-    <div class="container">
-        <section class="form-section" id="form">
-            <h2 data-en="Submit Your Information" data-fr="Soumettez vos informations" data-zh="提交您的信息">Submit Your Information</h2>
-            <form>
-                <label for="email" data-en="Email Address:" data-fr="Adresse électronique:" data-zh="电子邮件地址：">Email Address:</label>
-                <input type="email" id="email" name="email" required>
-                
-                <label for="citizenship" data-en="Citizenship:" data-fr="Citoyenneté:" data-zh="国籍：">Citizenship:</label>
-                <input type="text" id="citizenship" name="citizenship" required>
-                
-                <label for="applicationType" data-en="Application Type:" data-fr="Type de demande:" data-zh="申请类型：">Application Type:</label>
-                <select id="applicationType" name="applicationType" required>
-                    <option value="TRV_Visitor" data-en="TRV (Visitor)" data-fr="VRT (Visiteur)" data-zh="旅游签证（访问）">TRV (Visitor)</option>
-                    <option value="TRV_SuperVisa" data-en="TRV (Super Visa)" data-fr="VRT (Super Visa)" data-zh="旅游签证（超级签证）">TRV (Super Visa)</option>
-                    <option value="StudyPermit" data-en="Study Permit" data-fr="Permis d'études" data-zh="学习许可">Study Permit</option>
-                    <option value="WorkPermit" data-en="Work Permit" data-fr="Permis de travail" data-zh="工作许可">Work Permit</option>
-                    <option value="ExpressEntry" data-en="Permanent residency (Express Entry)" data-fr="Résidence permanente (Entrée express)" data-zh="永久居留（快速通道）">Permanent residency (Express Entry)</option>
-                    <option value="PNP" data-en="Permanent residency (PNP)" data-fr="Résidence permanente (PPNP)" data-zh="永久居留（省提名计划）">Permanent residency (PNP)</option>
-                    <option value="Spousal" data-en="Permanent residency (Spousal)" data-fr="Résidence permanente (Conjoint)" data-zh="永久居留（配偶）">Permanent residency (Spousal)</option>
-                    <option value="DependentChild" data-en="Permanent residency (Dependent child)" data-fr="Résidence permanente (Enfant à charge)" data-zh="永久居留（受抚养子女）">Permanent residency (Dependent child)</option>
-                    <option value="ParentsGrandparents" data-en="Permanent residency (Parents & Grandparents)" data-fr="Résidence permanente (Parents et grands-parents)" data-zh="永久居留（父母及祖父母）">Permanent residency (Parents & Grandparents)</option>
-                </select>
-                
-                <label for="submissionLocation" data-en="Submission Location:" data-fr="Lieu de soumission:" data-zh="提交地点：">Submission Location:</label>
-                <select id="submissionLocation" name="submissionLocation" multiple required>
-                    <option value="inCanada" data-en="In-Canada" data-fr="Au Canada" data-zh="在加拿大">In-Canada</option>
-                    <option value="international" data-en="International" data-fr="International" data-zh="国际">International</option>
-                </select>
-                
-                <label for="countryOfResidence" data-en="Country of Residence:" data-fr="Pays de résidence:" data-zh="居住国家：">Country of Residence:</label>
-                <select id="countryOfResidence" name="countryOfResidence" required>
-                    <option value="China" data-en="China" data-fr="Chine" data-zh="中国">China</option>
-                    <option value="Canada" data-en="Canada" data-fr="Canada" data-zh="加拿大">Canada</option>
-                    <!-- Add more countries as needed -->
-                </select>
-                
-                <label for="countryOfCitizenship" data-en="Country of Citizenship:" data-fr="Pays de citoyenneté:" data-zh="公民身份国家：">Country of Citizenship:</label>
-                <input type="text" id="countryOfCitizenship" name="countryOfCitizenship" required>
-                
-                <label for="gender" data-en="Gender:" data-fr="Genre:" data-zh="性别：">Gender:</label>
-                <select id="gender" name="gender" required>
-                    <option value="male" data-en="Male" data-fr="Masculin" data-zh="男">Male</option>
-                    <option value="female" data-en="Female" data-fr="Féminin" data-zh="女">Female</option>
-                    <option value="nonBinary" data-en="Non-binary" data-fr="Non binaire" data-zh="非二元性别">Non-binary</option>
-                    <option value="preferNotToSay" data-en="Prefer not to say" data-fr="Préfère ne pas dire" data-zh="不愿透露">Prefer not to say</option>
-                </select>
-                
-                <label for="age" data-en="Age:" data-fr="Âge:" data-zh="年龄：">Age:</label>
-                <```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>INYS - Canada Immigration Wait Time Tracker</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
-        }
-        .container {
-            width: 80%;
-            margin: auto;
-            overflow: hidden;
-        }
-        header {
-            background: #FFC107;
-            color: #000;
-            padding: 20px 0;
-            border-bottom: 3px solid #333;
-            text-align: center;
-        }
-        header a {
-            color: #000;
-            text-decoration: none;
-            text-transform: uppercase;
-            font-size: 16px;
-            margin: 0 15px;
-        }
-        header ul {
-            padding: 0;
-            list-style: none;
-            display: flex;
-            justify-content: center;
-        }
-        header li {
-            display: inline;
-        }
-        .form-section, .chart-section, .results-section {
-            background: #ffffff;
-            padding: 20px;
-            margin-top: 20px;
-            border-radius: 5px;
-            box-shadow: 0px 0px 10px 0px #000;
-        }
-        .form-section h2, .chart-section h2, .results-section h2 {
-            text-align: center;
-            color: #333;
-        }
-        .form-section form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .form-section label {
-            margin: 10px 0 5px 0;
-            font-weight: bold;
-        }
-        .form-section input, .form-section select {
-            padding: 10px;
-            margin: 5px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            width: 80%;
-        }
-        .form-section input[type="submit"] {
-            background: #FFC107;
-            color: #000;
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        .chart-container, .results-container {
-            text-align: center;
-        }
-        .results-container p {
-            font-size: 24px;
-            font-weight: bold;
-        }
-        .language-toggle {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
-        }
-        .language-toggle button {
-            background: #FFC107;
-            color: #000;
-            border: none;
-            cursor: pointer;
-            padding: 10px 20px;
-            margin: 0 10px;
-            font-size: 16px;
-            border-radius: 5px;
-        }
-    </style>
-    <script>
-        function setLanguage(lang) {
-            const elements = document.querySelectorAll('[data-en], [data-fr], [data-zh]');
-            elements.forEach(element => {
-                element.textContent = element.getAttribute('data-' + lang);
-            });
-        }
-    </script>
-</head>
-<body>
-    <header>
-        <h1 data-en="End Systemic Profiling of Chinese-born Immigrants" data-fr="Mettre fin au profilage systémique des immigrants nés en Chine" data-zh="结束对中国出生移民的系统性定性">End Systemic Profiling of Chinese-born Immigrants</h1>
-        <p data-en="We're Not Your Spies" data-fr="Nous ne sommes pas vos espions" data-zh="我们不是你的间谍">We're Not Your Spies</p>
-    </header>
-
-    <div class="language-toggle">
-        <button onclick="setLanguage('en')">English</button>
-        <button onclick="setLanguage('fr')">Français</button>
-        <button onclick="setLanguage('zh')">中文</button>
-    </div>
-
-    <div class="container">
-        <section class="form-section" id="form">
-            <h2 data-en="Submit Your Information" data-fr="Soumettez vos informations" data-zh="提交您的信息">Submit Your Information</h2>
-            <form>
-                <label for="email" data-en="Email Address:" data-fr="Adresse électronique:" data-zh="电子邮件地址：">Email Address:</label>
-                <input type="email" id="email" name="email" required>
-                
-                <label for="citizenship" data-en="Citizenship:" data-fr="Citoyenneté:" data-zh="国籍：">Citizenship:</label>
-                <input type="text" id="citizenship" name="citizenship" required>
-                
-                <label for="applicationType" data-en="Application Type:" data-fr="Type de demande:" data-zh="申请类型：">Application Type:</label>
-                <select id="applicationType" name="applicationType" required>
-                    <option value="TRV_Visitor" data-en="TRV (Visitor)" data-fr="VRT (Visiteur)" data-zh="旅游签证（访问）">TRV (Visitor)</option>
-                    <option value="TRV_SuperVisa" data-en="TRV (Super Visa)" data-fr="VRT (Super Visa)" data-zh="旅游签证（超级签证）">TRV (Super Visa)</option>
-                    <option value="StudyPermit" data-en="Study Permit" data-fr="Permis d'études" data-zh="学习许可">Study Permit</option>
-                    <option value="WorkPermit" data-en="Work Permit" data-fr="Permis de travail" data-zh="工作许可">Work Permit</option>
-                    <option value="ExpressEntry" data-en="Permanent residency (Express Entry)" data-fr="Résidence permanente (Entrée express)" data-zh="永久居留（快速通道）">Permanent residency (Express Entry)</option>
-                    <option value="PNP" data-en="Permanent residency (PNP)" data-fr="Résidence permanente (PPNP)" data-zh="永久居留（省提名计划）">Permanent residency (PNP)</option>
-                    <option value="Spousal" data-en="Permanent residency (Spousal)" data-fr="Résidence permanente (Conjoint)" data-zh="永久居留（配偶）">Permanent residency (Spousal)</option>
-                    <option value="DependentChild" data-en="Permanent residency (Dependent child)" data-fr="Résidence permanente (Enfant à charge)" data-zh="永久居留（受抚养子女）">Permanent residency (Dependent child)</option>
-                    <option value="ParentsGrandparents" data-en="Permanent residency (Parents & Grandparents)" data-fr="Résidence permanente (Parents et grands-parents)" data-zh="永久居留（父母及祖父母）">Permanent residency (Parents & Grandparents)</
+                <label for="applicationType" data-en="Application Type:" data-fr="Type de demande:"
