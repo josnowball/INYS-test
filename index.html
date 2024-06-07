@@ -71,6 +71,13 @@
             border-radius: 5px;
             margin-top: 20px;
             padding: 20px;
+            flex: 1 1 45%;
+            order: 2;
+        }
+        .wait-time {
+            font-size: 36px;
+            color: red;
+            font-weight: bold;
         }
         .language-toggle {
             display: flex;
@@ -86,6 +93,17 @@
             margin: 0 10px;
             font-size: 16px;
             border-radius: 5px;
+        }
+        footer {
+            background: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            margin-top: 40px;
+        }
+        footer a {
+            color: #FFC107;
+            text-decoration: none;
         }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -146,23 +164,25 @@
             </div>
         </section>
 
+        <div class="info-box">
+            <h2 data-en="Current Wait Time" data-fr="Délai d'attente actuel" data-zh="当前等候时间">Current Wait Time</h2>
+            <p class="wait-time" data-en="6 months" data-fr="6 mois" data-zh="6个月">6 months</p>
+        </div>
+
         <section class="form-section" id="form">
             <h2 data-en="Submit Your Information" data-fr="Soumettez vos informations" data-zh="提交您的信息">Submit Your Information</h2>
             <form>
                 <label for="email" data-en="Email Address:" data-fr="Adresse électronique:" data-zh="电子邮件地址：">Email Address:</label>
                 <input type="email" id="email" name="email" required>
 
-                <label for="citizenship" data-en="Citizenship:" data-fr="Citoyenneté:" data-zh="国籍：">Citizenship:</label>
-                <input type="text" id="citizenship" name="citizenship" required>
-
                 <label for="applicationType" data-en="Application Type:" data-fr="Type de demande:" data-zh="申请类型：">Application Type:</label>
                 <select id="applicationType" name="applicationType" required>
-                    <option value="TRV_Visitor" data-en="TRV (Visitor)" data-fr="VRT (Visiteur)" data-zh="旅游签证（访问）">TRV (Visitor)</option>
-                    <option value="TRV_SuperVisa" data-en="TRV (Super Visa)" data-fr="VRT (Super Visa)" data-zh="旅游签证（超级签证）">TRV (Super Visa)</option>
+                    <option value="TRV_Visitor" data-en="TRV (Visitor)" data-fr="VRT (Visiteur)" data-zh="临时居留签证（旅游）">TRV (Visitor)</option>
+                    <option value="TRV_SuperVisa" data-en="TRV (Super Visa)" data-fr="VRT (Super Visa)" data-zh="临时居留签证（超级签证）">TRV (Super Visa)</option>
                     <option value="StudyPermit" data-en="Study Permit" data-fr="Permis d'études" data-zh="学习许可">Study Permit</option>
                     <option value="WorkPermit" data-en="Work Permit" data-fr="Permis de travail" data-zh="工作许可">Work Permit</option>
                     <option value="ExpressEntry" data-en="Permanent residency (Express Entry)" data-fr="Résidence permanente (Entrée express)" data-zh="永久居留（快速通道）">Permanent residency (Express Entry)</option>
-                    <option value="PNP" data-en="Permanent residency (PNP)" data-fr="Résidence permanente (PPNP)" data-zh="永久居留（省提名计划）">Permanent residency (PNP)</option>
+                    <option value="PNP" data-en="Permanent residency (PNP)" data-fr="Résidence permanente (PNP)" data-zh="永久居留（省提名计划）">Permanent residency (PNP)</option>
                     <option value="Spousal" data-en="Permanent residency (Spousal)" data-fr="Résidence permanente (Conjoint)" data-zh="永久居留（配偶）">Permanent residency (Spousal)</option>
                     <option value="DependentChild" data-en="Permanent residency (Dependent child)" data-fr="Résidence permanente (Enfant à charge)" data-zh="永久居留（受抚养子女）">Permanent residency (Dependent child)</option>
                     <option value="ParentsGrandparents" data-en="Permanent residency (Parents & Grandparents)" data-fr="Résidence permanente (Parents et grands-parents)" data-zh="永久居留（父母及祖父母）">Permanent residency (Parents & Grandparents)</option>
@@ -170,7 +190,7 @@
 
                 <label for="submissionLocation" data-en="Submission Location:" data-fr="Lieu de soumission:" data-zh="提交地点：">Submission Location:</label>
                 <select id="submissionLocation" name="submissionLocation" required>
-                    <option value="inCanada" data-en="In-Canada" data-fr="Au Canada" data-zh="在加拿大">In-Canada</option>
+                    <option value="inCanada" data-en="In-Canada" data-fr="Au Canada" data-zh="在加拿大境内">In-Canada</option>
                     <option value="international" data-en="International" data-fr="International" data-zh="国际">International</option>
                 </select>
 
@@ -178,11 +198,36 @@
                 <select id="countryOfResidence" name="countryOfResidence" required>
                     <option value="China" data-en="China" data-fr="Chine" data-zh="中国">China</option>
                     <option value="Canada" data-en="Canada" data-fr="Canada" data-zh="加拿大">Canada</option>
+                    <option value="HongKongSAR" data-en="Hong Kong SAR" data-fr="Hong Kong SAR" data-zh="香港特别行政区">HongKongSAR</option>
+                    <option value="USA" data-en="United States" data-fr="États-Unis" data-zh="美国">USA</option>
+                    <option value="UK" data-en="United Kingdom" data-fr="Royaume-Uni" data-zh="英国">UK</option>
+                    <option value="Australia" data-en="Australia" data-fr="Australie" data-zh="澳大利亚">Australia</option>
+                    <option value="NZ" data-en="New Zealand" data-fr="Nouvelle-Zélande" data-zh="新西兰">NZ</option>
+                    <option value="Mexico" data-en="Mexico" data-fr="Mexique" data-zh="墨西哥">Hong Kong</option>
+                    <option value="France" data-en="France" data-fr="France" data-zh="法国">Hong Kong</option>
+                    <option value="Spain" data-en="Spain" data-fr="Espagne" data-zh="西班牙">Spain</option>
+                    <option value="Singapore" data-en="Singapore" data-fr="Singapour" data-zh="新加坡">Singapore</option>
+                    <option value="Japan" data-en="Japan" data-fr="Japon" data-zh="日本">Japan</option>
                     <!-- Add more countries as needed -->
                 </select>
 
-                <label for="countryOfCitizenship" data-en="Country of Citizenship:" data-fr="Pays de citoyenneté:" data-zh="公民身份国家：">Country of Citizenship:</label>
-                <input type="text" id="countryOfCitizenship" name="countryOfCitizenship" required>
+                <label for="countryOfCitizenship" data-en="Country of Citizenship:" data-fr="Pays de citoyenneté:" data-zh="所持有护照：">Country of Citizenship:</label>
+         <select id="countryOfCitizenship" name="countryOfCitizenship" required>
+                    <option value="China" data-en="Chinese Passport" data-fr="Passeport chinois" data-zh="中国护照">China</option>
+                    <option value="Canada" data-en="Canada" data-fr="Canada" data-zh="加拿大">Canada</option>
+                    <option value="HongKongSAR" data-en="Hong Kong SAR Passport" data-fr="Passeport de la RAS Hong Kong" data-zh="香港特别行政区护照">HongKongSAR</option>
+                    <option value="MacauSAR" data-en="Macau SAR" data-fr="Macau SAR" data-zh="澳门特别行政区护照">MacauSAR</option>
+                    <option value="Taiwan" data-en="Taiwan passport" data-fr="Passeport taïwanais" data-zh="台湾护照">Taiwan</option>
+                    <option value="USA" data-en="United States" data-fr="États-Unis" data-zh="美国">USA</option>
+                    <option value="UK" data-en="United Kingdom" data-fr="Royaume-Uni" data-zh="英国">UK</option>
+                    <option value="Australia" data-en="Australia" data-fr="Australie" data-zh="澳大利亚">Australia</option>
+                    <option value="NZ" data-en="New Zealand" data-fr="Nouvelle-Zélande" data-zh="新西兰">NZ</option>
+                    <option value="Mexico" data-en="Mexico" data-fr="Mexique" data-zh="墨西哥">Mexico</option>
+                    <option value="France" data-en="France" data-fr="France" data-zh="法国">France</option>
+                    <option value="Singapore" data-en="Singapore" data-fr="Singapour" data-zh="新加坡">Singapore</option>
+                    <option value="Japan" data-en="Japan" data-fr="Japon" data-zh="日本">Japan</option>
+                    <!-- Add more countries as needed -->
+                </select>
 
                 <label for="gender" data-en="Gender:" data-fr="Genre:" data-zh="性别：">Gender:</label>
                 <select id="gender" name="gender" required>
@@ -201,12 +246,8 @@
                 <input type="submit" value="Submit" data-en="Submit" data-fr="Soumettre" data-zh="提交">
             </form>
         </section>
-
-        <div class="info-box">
-            <h2 data-en="Current Wait Time" data-fr="Délai d'attente actuel" data-zh="当前等待时间">Current Wait Time</h2>
-            <p data-en="Application Type: TRV (Visitor)" data-fr="Type de demande: VRT (Visiteur)" data-zh="申请类型：旅游签证（访问）">Application Type: TRV (Visitor)</p>
-            <p data-en="Processing Time: 6 months" data-fr="Temps de traitement: 6 mois" data-zh="处理时间：6个月">Processing Time: 6 months</p>
-        </div>
     </div>
-</body>
-</html>
+
+    <footer>
+        <p data-en="Disclaimer: The information provided on this website is for general informational purposes only. All information on the Site is provided in good faith, however, we make no representation or warranty of any kind, express or implied, regarding the accuracy, adequacy, validity, reliability, availability, or completeness of any information on the Site." data-fr="Avertissement : Les informations fournies sur ce site Web sont à titre informatif général uniquement. Toutes les informations sur le site sont fournies de bonne foi, cependant, nous ne faisons aucune représentation ou garantie d'aucune sorte, expresse ou implicite, quant à l'exactitude, l'adéquation, la validité, la fiabilité, la disponibilité ou l'exhaustivité de toute information sur le site." data-zh="免责声明：本网站提供的信息仅供一般参考之用。我们以诚信提供网站上的所有信息，但我们对网站上任何信息的准确性、充分性、有效性、可靠性、可用性或完整性不做任何形式的明示或暗示的声明或保证。">Disclaimer: The information provided on this website is for general informational purposes only. All information on the Site is provided in good faith, however, we make no representation or warranty of any kind, express or implied, regarding the accuracy, adequacy, validity, reliability, availability, or completeness of any information on the Site.</p>
+        <p data-en="Introduction to I'm Not Your Spy and We Belong: This platform aims to end systemic profiling of Chinese-born immigrants, advocating for fair and unbiased immigration processes. We Belong emphasizes unity and support for all immigrants, creating a community of solidarity and mutual respect." data-fr="Introduction à Je ne suis pas votre espion et Nous appartenons : Cette plateforme vise à mettre fin au profilage systémique des immigrants nés en Chine, en plaidant pour des processus d'immigration justes et impart
